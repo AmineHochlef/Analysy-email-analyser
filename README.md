@@ -9,13 +9,15 @@ The idea of this project is to make email checking efficient and easier. So the 
 - Sentimental analysis this is used to prioritize emails as Negative or Positive sentimentally
 - Topic and keywords extraction this is useful to search for emails with certain keywords :)
 
-- [How does it work ?](#How does it work ?)
+This project was done during an Internship.
+
+- [How_does_it_work](#How_does_it_work)
 - [Technologies](#Technologies)
-- [Development server](#Development server)
+- [Development_server](#Development server)
 - [Contribute](#Contribute)
 - [Author](#Author)
 
-## How does it work ?
+## How does it work 
 
 1. Make sure you enable IMAP in your gmail settings
 (Log on to your Gmail account and go to Settings, See All Settings, and select
@@ -47,7 +49,7 @@ Run `python app.py` in the back end folder for the flask server to run.
 
 ## Contribute
 
-For any type of contribution, please follow the instructions in [CONTRIBUTING.md](https://github.com/willmendesneto/ngx-skeleton-loader/blob/master/CONTRIBUTING.md).
+For any type of contribution, please follow the instructions in [CONTRIBUTING.md](https://github.com/AmineHochlef/Analysy-email-analyser/blob/master/CONTRIBUTING.md).
 
 ## Author
 
