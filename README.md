@@ -11,9 +11,9 @@ The idea of this project is to make email checking efficient and easier. So the 
 
 This project was done during an Internship.
 
-- [How_does_it_work](#How_does_it_work)
+- [How_does_it_work](#How does it work)
 - [Technologies](#Technologies)
-- [Development_server](#Development_server)
+- [Development_server](#Development server)
 - [Contribute](#Contribute)
 - [Author](#Author)
 
