@@ -1,0 +1,42 @@
+<mat-card *ngIf="email" fxFlex="33" class="mb-8">
+  <div class="flex justify-between">
+    <mat-card-header>
+      <div *ngIf="email.gravatar_url" mat-card-avatar>
+        <img [src]="email.gravatar_url | safeUrl" alt="Avatar" class="rounded-full">
+      </div>
+      <mat-card-title>{{ email.sender }}</mat-card-title>
+      <mat-card-subtitle>{{ email.from }}</mat-card-subtitle> 
+    </mat-card-header>
+    <p class="text-gray-600">{{ email.date }}</p>
+  </div>
+    <mat-card-content class="pl-2">
+      <div class="border-b border-gray">
+          <p class="text-lg font-medium	">{{ email.subject }}</p>
+      </div>
+      <div class="border-b border-gray">
+      <div class="mb-1 mt-1 block font-medium text-gray-900">Body</div>
+      <p class="mt-1 text-gray-600 truncate hover:whitespace-normal">{{ email.body }}</p>
+      </div>
+      <div class=" border-b border-gray">
+        <div class="mt-1 mb-1 block font-medium text-gray-900">Extracted Summary</div>
+        <ol>
+          <li class="mb-2 text-gray-600" *ngFor="let summaryItem of email.Extracted_Summary">{{ summaryItem }}</li>
+        </ol>
+      </div>
+      <div>
+      <div class="mt-1 mb-1 block font-medium text-gray-900">Extracted Keywords </div>
+      <p class="mt-1 text-gray-600">{{ email.Extracted_Topics_Keywords}}</p>
+      </div>
+      <span [ngClass]="{
+        'p-1.5 text-xs font-medium uppercase tracking-wider rounded-lg bg-opacity-50': true,
+        'text-red-800 bg-red-200': email.Sentiment_Label === 'Negative',
+        'text-green-800 bg-green-200': email.Sentiment_Label === 'Positive',
+        'text-gray-800 bg-gray-200': email.Sentiment_Label === 'Neutral'
+        }">
+        Sentiment : {{ email.Sentiment_Label }}
+      </span>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button >MARK AS SEEN</button>
+    </mat-card-actions>
+  </mat-card>

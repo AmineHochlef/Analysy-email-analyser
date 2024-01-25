@@ -1,0 +1,27 @@
+<mat-card class="mb-4">
+    <div class="flex justify-between">
+        <div>
+            <button mat-button [mat-menu-trigger-for]="sortByMenu">
+                Sort by {{sort}}
+                <mat-icon>expand_more</mat-icon>
+            </button>
+            <mat-menu #sortByMenu="matMenu">
+                <button (click)="onSortUpdated('Negative')" mat-menu-item>Negative</button>
+                <button (click)="onSortUpdated('Positive')" mat-menu-item>Positive</button>
+            </mat-menu>
+        </div>
+        <div class="flex items-center"> 
+            <div>
+                <button mat-button [matMenuTriggerFor]="menu">
+                    Show {{emails_show_count}}
+                    <mat-icon>expand_more</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button (click)="onCountUpdated(5)" mat-menu-item>5</button>
+                    <button (click)="onCountUpdated(10)" mat-menu-item>10</button>
+                    <button (click)="onCountUpdated(15)" mat-menu-item>15</button>
+                </mat-menu>
+            </div>
+        </div>
+    </div>
+</mat-card>

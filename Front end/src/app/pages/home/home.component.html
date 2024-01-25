@@ -1,0 +1,57 @@
+<mat-drawer-container 
+[autosize]="true"
+class="min-h-full max-w-7xl mx-auto border-x">
+    <mat-drawer mode="side" opened class="p-6">
+        <div>
+            <p class="text-lg ">Search using sender's email</p>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Email</mat-label>
+                  <input type="email" [(ngModel)]="senderEmail" name="senderEmail" matInput placeholder="Ex. pat@example.com">
+                  
+                </mat-form-field>
+                <br>
+                <div class="flex justify-left">
+                <button class="mx-auto" mat-raised-button color="primary" (click)="onEmailSubmit()">SUBMIT</button>
+                </div>
+              </form>              
+        </div>
+    </mat-drawer>
+    <mat-drawer-content class="p-6">
+      <app-emails-header 
+      (emailsCountChange)="onEmailsCountChange($event)"
+      (sortChange)="onSortChange($event)"
+      ></app-emails-header>
+      <div *ngIf="emailNotFound" class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4" role="alert">
+        <p class="font-bold">Error</p>
+        <p>Email not found in the Inbox.</p>
+      </div>
+      <mat-grid-list cols="cols" rowHeight="2:1" gutterSize="16">
+        <ng-container *ngIf="loading" >
+          <mat-card class="w-full h-96 mb-8" *ngFor="let item of [1, 2, 3, 4, 5]">
+              <div class="first-section-wrapper">
+                <div class="gravatar">
+                  <ngx-skeleton-loader
+                    appearance="circle"
+                    [theme]="{ width: '46px', height: '46px' }"
+                  ></ngx-skeleton-loader>
+                </div>
+                <div *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                  <ngx-skeleton-loader
+                    [theme]="{
+                      width: '100%',
+                      'border-radius': '0',
+                      height: '15px',
+                      'margin-bottom': '10px'
+                    }"
+                  ></ngx-skeleton-loader>
+                </div>
+            </div>
+          </mat-card>
+        </ng-container>          
+          <div *ngFor="let email of emails">
+              <app-email-box class="w-full " [email]="email"></app-email-box>
+          </div>
+      </mat-grid-list>
+  </mat-drawer-content>
+</mat-drawer-container>
