@@ -1,3 +1,4 @@
+# Import necessary Libraries
 import datetime
 import imaplib
 import email
@@ -13,17 +14,15 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import spacy
 import hashlib
-
 from flask_cors import CORS
-
-
 from nltk.corpus import stopwords
-
 from flask import Flask, jsonify, request
 
 
 app = Flask(__name__)
+# useful for rest api requests
 CORS(app)
+
 # Function to extract a summary from text
 def extract_summary(text):
     try:
@@ -54,11 +53,13 @@ def extract_keywords(text):
 
     return list(unique_nouns)
 
+# Main function
 def fetch_emails(sender_email="example@email.com", limit=15):
 
     # Read credentials from the YAML file
     with open("credentials.yml") as f:
         content = f.read()
+
     my_credentials = yaml.load(content, Loader=yaml.FullLoader)
     user, password = my_credentials["user"], my_credentials["password"]
 
@@ -67,6 +68,7 @@ def fetch_emails(sender_email="example@email.com", limit=15):
     my_mail.login(user, password)
     my_mail.select('Inbox')
 
+    # This is a default sender email you don't have to do that 
     sender_email = sender_email or "example@email.com"
 
     if sender_email:
@@ -95,12 +97,17 @@ def fetch_emails(sender_email="example@email.com", limit=15):
     for num in reversed(mail_id_list):
         # Use the FETCH command to retrieve the entire message
         typ, message_data = my_mail.fetch(num, '(RFC822)')
+
         for response_part in message_data:
+
             if isinstance(response_part, tuple):
                 my_msg = email.message_from_bytes(response_part[1])
+
                 # Use parseaddr to extract the email address from the "from" field
+
                 sender_name, sender_email = email.utils.parseaddr(my_msg['from'])
                 
+                # The dictionnary that we are sending to the front end 
                 email_data = {
                     "subject": my_msg['subject'],
                     "from": sender_email,
@@ -129,21 +136,9 @@ def fetch_emails(sender_email="example@email.com", limit=15):
                     if part.get_content_type() == 'text/plain':
                         # printable encoding
                         message_body = part.get_payload(decode=True).decode()
-                        # ------- NOT NECESSARY FOR NOW ----------
-                        # words = decoded_body.split()
-                        # # puttin alphabetics only
-                        # alphabetic_only = [word for word in words if word.isalpha()]
-                        # lower_case_only = [word.lower() for word in alphabetic_only]
-                        # stopwords_nltk = set(stopwords.words('english'))
-                        # # final stage 
-                        # cleaned_words = [word for word in lower_case_only if word not in stopwords_nltk]
-                        # cleaned_body = ' '.join(cleaned_words)
-                        # ------- NOT NECESSARY FOR NOW ----------
                         email_data["body"] = str(message_body).replace("\r\n"," ")
+                        
                         # Perform sentiment analysis
-                        
-                        # combined_body_subject = f"{my_msg['subject']} {message_body}"
-                        
                         sentiment_analysis = TextBlob(message_body)
                         sentiment_score = sentiment_analysis.sentiment.polarity  # Range: -1 (negative) to 1 (positive)
 
