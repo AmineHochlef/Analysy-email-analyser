@@ -13,7 +13,7 @@ This project was done during an Internship.
 
 - [How_does_it_work](#How_does_it_work)
 - [Technologies](#Technologies)
-- [Development_server](#Development server)
+- [Development_server](#Development_server)
 - [Contribute](#Contribute)
 - [Author](#Author)
 
