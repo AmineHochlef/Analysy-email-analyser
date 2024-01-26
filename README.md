@@ -1,6 +1,7 @@
 # Analysy
 
-Simple email analyser app.
+<img src="Front end\src\assets\Analysy_website_view.png" />
+
 ## Why Analysy ?
 
 The idea of this project is to make email checking efficient and easier. So the main point is analysing emails using different NLP techniques so you don't have to read the email in it's entirety, this project presents some NLP features such as :
