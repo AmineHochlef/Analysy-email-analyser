@@ -14,7 +14,6 @@ This project was done during an Internship.
 - [How does it work](#how-does-it-work)
 - [Technologies](#technologies)
 - [Development server](#development-server)
-- [Contribute](#contribute)
 - [Author](#author)
 
 ## How does it work 
@@ -46,10 +45,6 @@ The system gives you a password that you need to use to authenticate from python
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 Run `python app.py` in the back end folder for the flask server to run.
-
-## Contribute
-
-For any type of contribution, please follow the instructions in [CONTRIBUTING.md](https://github.com/AmineHochlef/Analysy-email-analyser/blob/master/CONTRIBUTING.md).
 
 ## Author
 
